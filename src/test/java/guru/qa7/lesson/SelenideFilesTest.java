@@ -1,8 +1,6 @@
-package guru.qa7;
+package guru.qa7.lesson;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.FileDownloadMode;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +23,7 @@ public class SelenideFilesTest {
 
         Selenide.open("https://github.com/junit-team/junit5/blob/main/LICENSE.md");
         File downloadedFile = $("#raw-url").download(); //скачиваем файл
+        //       new FileReader(downloadedFile); - получение загруженного файла на чтение
         try (InputStream is = new FileInputStream(downloadedFile)) {       //делаем стрим для чтения файла
             assertThat(new String(is.readAllBytes(), StandardCharsets.UTF_8)) //читаем файл
                     .contains("Eclipse Public License - v 2.0");           //вот такая строка должна быть в файле
@@ -34,8 +33,8 @@ public class SelenideFilesTest {
     @Test
     void uploadFile() {
         Selenide.open("https://the-internet.herokuapp.com/upload");
-        Selenide.$("input[type='file").uploadFromClasspath("upload.txt");
+        Selenide.$("input[type='file").uploadFromClasspath("lesson/upload.txt");
         Selenide.$("#file-submit").click();
-        Selenide.$("#uploaded-files").shouldHave(Condition.text("upload.txt"));
+        Selenide.$("#uploaded-files").shouldHave(Condition.text("lesson/upload.txt"));
     }
 }
