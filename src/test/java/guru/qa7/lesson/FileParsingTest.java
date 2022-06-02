@@ -22,7 +22,7 @@ public class FileParsingTest {
     private ClassLoader cl = getClass().getClassLoader();
 
     @Test
-    void parsePdfTest() throws IOException {
+    void parsePdfTest() throws Exception {
         Selenide.open("https://junit.org/junit5/docs/current/user-guide/");
         File pdfDownload = Selenide.$(byText("PDF download")).download();
         PDF parsedPdf = new PDF(pdfDownload);
@@ -59,7 +59,7 @@ public class FileParsingTest {
              ZipInputStream zis = new ZipInputStream(stream)) {
             ZipEntry zipEntry;
             while ((zipEntry= zis.getNextEntry()) !=null) {
-                assertThat(zipEntry.getName()).isEqualTo("lesson/library.csv");
+                assertThat(zipEntry.getName()).isEqualTo("library.csv");
             }
         }
     }

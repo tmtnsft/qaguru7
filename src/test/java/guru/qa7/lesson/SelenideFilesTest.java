@@ -12,11 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SelenideFilesTest {
 
-    private ClassLoader cl = getClass().getClassLoader();
-
     @Test
-    void downloadTest() throws IOException {
-        /* Использовать для скачивания сложных файлов:
+    void downloadTest() throws Exception {
+        /* Использовать для скачивания сложных файлов (если нет href):
         Configuration.proxyEnabled = true;
         Configuration.fileDownload = FileDownloadMode.PROXY;
          */
